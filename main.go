@@ -14,7 +14,7 @@ func main() {
 }
 
 func run() error {
-	wasmBytes, err := ioutil.ReadFile("simple.wasm")
+	wasmBytes, err := ioutil.ReadFile("./io/simple.wasm")
 	if err != nil {
 		return err
 	}
