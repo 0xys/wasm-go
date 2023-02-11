@@ -1,13 +1,14 @@
 
+WABT_NAME ?= wabt
 
 .PHONY: wabt
 wabt:
-	docker build -t wabt .
+	docker build -t $(WABT_NAME) .
 
 .PHONY: wasm
 wasm:
-	echo TBD
+	docker run --name $(WABT_NAME) --mount type=bind,source="$(PWD)"/io,target=/app -d $(WABT_NAME)
 
-.PHONY: wat2wasm
-wat2wasm:
-	docker run --name wabt --mount type=bind,source="$(PWD)"/io,target=/app -d wabt
+.PHONY: clean
+clean:
+	docker container rm $(WABT_NAME)
